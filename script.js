@@ -29,20 +29,32 @@ function operate(x, operator, y) {
     }
 }
 
+// Get value
+let value = '';
+
+function getNumber(e) {
+    if (value == '') {
+        populateScreen(e.target.textContent);
+        return value = e.target.textContent;
+    }
+    value += e.target.textContent;
+    populateScreen(value);
+    return value;
+}
+
 // Populate screen
 
 const screen = document.querySelector('.screen');
 
-function populateScreen(e) {
-    screen.textContent = e.target.textContent;
+function populateScreen(num) {
+    screen.textContent = num;
 }
 
 // Numbers event listeners
 
 const numbers = document.querySelectorAll('.number');
 
-numbers.forEach(number => number.addEventListener('click', populateScreen))
-
-function getNumber(e) {
-    return e.target.textContent;
-}
+numbers.forEach(number => {
+    // number.addEventListener('click', populateScreen);
+    number.addEventListener('click', getNumber);
+})
