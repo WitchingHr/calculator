@@ -3,6 +3,8 @@
     flex-direction: column;
     justify-content: space-around;
     height: 100vh;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 300;
 }
 
 .flex-container {
@@ -15,6 +17,7 @@
 .screen {
     display: flex;
     flex-direction: column;
+    flex: 1;
     border: 1px solid black;
     height: 100px;
     text-align: end;
@@ -39,6 +42,8 @@
     text-align: center;
     padding: 15px;
     padding-top: 30px;
+    font-size: 26px;
+
 }
 
 .button:hover {
