@@ -16,8 +16,6 @@ function divide(x, y) {
     return x / y;
 }
 
-// Operate
-
 function operate(x, operator, y) {
     switch (operator) {
         case '+' :
@@ -29,4 +27,22 @@ function operate(x, operator, y) {
         case '/' :
             return divide(x, y);    
     }
+}
+
+// Populate screen
+
+const screen = document.querySelector('.screen');
+
+function populateScreen(e) {
+    screen.textContent = e.target.textContent;
+}
+
+// Numbers event listeners
+
+const numbers = document.querySelectorAll('.number');
+
+numbers.forEach(number => number.addEventListener('click', populateScreen))
+
+function getNumber(e) {
+    return e.target.textContent;
 }

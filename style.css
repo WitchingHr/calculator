@@ -6,10 +6,9 @@
 }
 
 .flex-container {
-    display: block;
+    display: flex;
     flex-direction: column;
     gap: 5px;
-    max-width: 35%;
     margin: 0 auto;
 }
 
@@ -37,4 +36,12 @@
     text-align: center;
     padding: 15px;
     padding-top: 30px;
+}
+
+.button:hover {
+    background-color: rgb(208, 208, 208);
+}
+
+.button:active {
+    background-color: gray;
 }
