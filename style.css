@@ -1,0 +1,27 @@
+.flex-container {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    max-width: 25%;
+}
+
+.screen {
+    border: 1px solid black;
+    height: 40px;
+}
+
+.button-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+    border: 1px solid black;
+}
+
+.button {
+    border: 1px solid black;
+    border-radius: 3px;
+    text-align: center;
+    padding: 15px;
+}
