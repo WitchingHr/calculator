@@ -13,9 +13,12 @@
 }
 
 .screen {
+    display: flex;
+    flex-direction: column;
     border: 1px solid black;
     height: 100px;
     text-align: end;
+    font-size: 42px;
 }
 
 .button-grid {

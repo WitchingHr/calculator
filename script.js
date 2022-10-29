@@ -30,6 +30,7 @@ function operate(x, operator, y) {
 }
 
 // Get value
+
 let value = '';
 
 function getNumber(e) {
@@ -44,10 +45,10 @@ function getNumber(e) {
 
 // Populate screen
 
-const screen = document.querySelector('.screen');
+const screenBottom = document.querySelector('.screen-bottom');
 
 function populateScreen(num) {
-    screen.textContent = num;
+    screenBottom.textContent = num;
 }
 
 // Numbers event listeners
@@ -55,6 +56,5 @@ function populateScreen(num) {
 const numbers = document.querySelectorAll('.number');
 
 numbers.forEach(number => {
-    // number.addEventListener('click', populateScreen);
     number.addEventListener('click', getNumber);
 })
