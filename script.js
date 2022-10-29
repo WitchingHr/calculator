@@ -23,7 +23,7 @@ function operate(x, operator, y) {
         case '-' :
             return subtract(x, y);
         case '*' :
-            return multiply(x, y);
+            return multiply(x, y).toFixed(2).replace(/[.]00$/, "");
         case '/' :
             return divide(x, y).toFixed(2).replace(/[.]00$/, "");  
     }
@@ -38,6 +38,24 @@ function getNumber(e) {
         populateScreen(e.target.textContent);
         return value = Number(e.target.textContent);
     }
+    value += e.target.textContent;
+    populateScreen(value);
+    return value;
+}
+
+// Decimal
+
+function inputDecimal(e) {
+    if (value == '') {
+        populateScreen(e.target.textContent);
+        return value = e.target.textContent;
+    }
+    if (value.toString().length == 1) {
+        value += e.target.textContent;
+        populateScreen(value);
+        return value;
+    }
+    if (value.split('').some(item => item == '.')) return value;
     value += e.target.textContent;
     populateScreen(value);
     return value;
@@ -96,13 +114,19 @@ function clearScreen() {
     populateScreen();
 }
 
-// Numbers event listeners
+// Numbers event listener
 
 const numbers = document.querySelectorAll('.number');
 
 numbers.forEach(number => number.addEventListener('click', getNumber));
 
-// Operators event listeners
+// Decimal event listener
+
+const dec = document.querySelector('.point');
+
+dec.addEventListener('click', inputDecimal);
+
+// Operators event listener
 
 const operators = document.querySelectorAll('.operator');
 
