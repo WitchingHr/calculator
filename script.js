@@ -67,10 +67,19 @@ function getOperator(e) {
 // Solve
 
 function solve() {
+    if (value == '') return value = '';
     value = operate(storedValue, operator, value);
     populateScreen(value);
 }
 
+// All clear
+
+function allClear() {
+    clearScreen();
+    storedValue = '';
+    value = '';
+    operator = '';
+}
 
 // Populate screen
 
@@ -104,3 +113,9 @@ operators.forEach(operator => operator.addEventListener('click', getOperator));
 const equals = document.querySelector('.equals');
 
 equals.addEventListener('click', solve);
+
+// AC event listener
+
+const ac = document.querySelector('.ac');
+
+ac.addEventListener('click', allClear);
