@@ -5,7 +5,7 @@ function add(x, y) {
     if (sum.toString().length > 14) {
         return sum.toExponential(6);
     }
-    return parseFloat(x + y);
+    return parseFloat(sum);
 }
 
 function subtract(x, y) {
@@ -13,7 +13,7 @@ function subtract(x, y) {
     if (difference.toString().length > 14) {
         return difference.toExponential(6);
     }
-    return parseFloat(x - y);
+    return parseFloat(difference);
 }
 
 function multiply(x, y) {
@@ -21,15 +21,16 @@ function multiply(x, y) {
     if (product.toString().length > 14) {
         return product.toExponential(6);
     }
-    return parseFloat((x * y).toFixed(3));
+    return parseFloat(product.toFixed(3));
 }
 
 function divide(x, y) {
-    const quotient = x / y;
-    if (quotient.toString().length > 14) {
-        return quotient.toExponential(6);
+    const quotient = parseFloat(x / y);
+    const rounded = quotient.toFixed(6);
+    if (rounded.toString().length > 14) {
+        return rounded.toExponential(6);
     }
-    return parseFloat((x / y).toFixed(3));
+    return parseFloat(rounded);
 }
 
 function operate(x, operator, y) {
@@ -89,16 +90,6 @@ function getPercentage() {
     return value;
 }
 
-// Delete
-
-function deleteChar() {
-    const array = value.toString().split('');
-    array.pop();
-    value = array.join('');
-    populateBottomScreen(value);
-    return value;
-}
-
 // Negative
 
 function makeNegative() {
@@ -144,6 +135,16 @@ function solve() {
     populateBottomScreen(value);
     clearTopScreen();
 
+}
+
+// Delete
+
+function deleteChar() {
+    const array = value.toString().split('');
+    array.pop();
+    value = array.join('');
+    populateBottomScreen(value);
+    return value;
 }
 
 // All clear
