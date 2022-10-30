@@ -107,11 +107,14 @@ function storeValue(value) {
 // Get operator
 
 let operator = '';
+let symbol = '';
 
 function getOperator(e) {
     operator = e.target.id;
+    symbol = e.target.textContent;
     storeValue(value);
     clearScreen();
+    populateTop();
 }
 
 // Solve
@@ -120,18 +123,21 @@ function solve() {
     if (value == '') return value = '';
     value = operate(storedValue, operator, value);
     populateScreen(value);
+    clearTop();
+
 }
 
 // All clear
 
 function allClear() {
     clearScreen();
+    clearTop();
     storedValue = '';
     value = '';
     operator = '';
 }
 
-// Populate screen
+// Populate bottom-screen
 
 const screenBottom = document.querySelector('.screen-bottom');
 
@@ -139,11 +145,25 @@ function populateScreen(num) {
     screenBottom.textContent = num;
 }
 
+// Populate top-screen
+
+const screenTop = document.querySelector('.screen-top');
+
+function populateTop() {
+    screenTop.textContent = `${storedValue} ${symbol}`;
+}
+
 // Clear screen
 
 function clearScreen() {
     value = '';
     populateScreen();
+}
+
+// Clear top
+
+function clearTop() {
+    screenTop.textContent = '';
 }
 
 // Numbers event listener
