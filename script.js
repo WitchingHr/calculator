@@ -1,19 +1,35 @@
 // Operator functions
 
 function add(x, y) {
-    return x + y;
+    const sum = Number(x) + Number(y);
+    if (sum.toString().length > 14) {
+        return sum.toExponential(6);
+    }
+    return parseFloat(x + y);
 }
 
 function subtract(x, y) {
-    return x - y;
+    const difference = x - y;
+    if (difference.toString().length > 14) {
+        return difference.toExponential(6);
+    }
+    return parseFloat(x - y);
 }
 
 function multiply(x, y) {
-    return x * y;
+    const product = x * y;
+    if (product.toString().length > 14) {
+        return product.toExponential(6);
+    }
+    return parseFloat(x * y).toFixed(3);
 }
 
 function divide(x, y) {
-    return x / y;
+    const quotient = x / y;
+    if (quotient.toString().length > 14) {
+        return quotient.toExponential(6);
+    }
+    return parseFloat(x / y).toFixed(3);
 }
 
 function operate(x, operator, y) {
@@ -23,9 +39,9 @@ function operate(x, operator, y) {
         case '-' :
             return subtract(x, y);
         case '*' :
-            return parseFloat(multiply(x, y).toFixed(3).replace(/[.]000$/, ""));
+            return multiply(x, y);
         case '/' :
-            return parseFloat(divide(x, y).toFixed(3).replace(/[.]000$/, ""));  
+            return divide(x, y);  
     }
 }
 
@@ -38,7 +54,7 @@ function getNumber(e) {
         populateScreen(e.target.textContent);
         return value = Number(e.target.textContent);
     }
-    // if string is too long, return..............................
+    if (value.length == 14) return value;
     value += e.target.textContent;
     populateScreen(value);
     return Number(value);
@@ -66,6 +82,9 @@ function inputDecimal(e) {
 
 function getPercentage() {
     value /= 100;
+    if (value.toString().length > 14) {
+        value = value.toExponential(3);
+    }
     populateScreen(value);
     return value;
 }
