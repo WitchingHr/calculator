@@ -109,7 +109,7 @@ function storeValue(value) {
 let operator = '';
 
 function getOperator(e) {
-    operator = e.target.textContent;
+    operator = e.target.id;
     storeValue(value);
     clearScreen();
 }
