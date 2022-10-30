@@ -23,9 +23,9 @@ function operate(x, operator, y) {
         case '-' :
             return subtract(x, y);
         case '*' :
-            return multiply(x, y).toFixed(3).replace(/[.]00$/, "");
+            return multiply(x, y).toFixed(3).replace(/[.]000$/, "");
         case '/' :
-            return divide(x, y).toFixed(3).replace(/[.]00$/, "");  
+            return divide(x, y).toFixed(3).replace(/[.]000$/, "");  
     }
 }
 
@@ -40,7 +40,7 @@ function getNumber(e) {
     }
     value += e.target.textContent;
     populateScreen(value);
-    return value;
+    return Number(value);
 }
 
 // Decimal
@@ -69,12 +69,22 @@ function getPercentage() {
     return value;
 }
 
+// Delete
+
+function deleteChar() {
+    const array = value.toString().split('');
+    array.pop();
+    value = array.join('');
+    populateScreen(value);
+    return value;
+}
+
 // Store value, clear value
 
 let storedValue = '';
 
 function storeValue(value) {
-    storedValue = value;
+    storedValue = Number(value);
     console.log(storedValue); // remove this
     value = '';
 }
@@ -157,3 +167,9 @@ ac.addEventListener('click', allClear);
 const percent = document.querySelector('.percent');
 
 percent.addEventListener('click', getPercentage);
+
+// Delete event listener
+
+const del = document.querySelector('.delete');
+
+del.addEventListener('click', deleteChar);
