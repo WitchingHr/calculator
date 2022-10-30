@@ -23,9 +23,9 @@ function operate(x, operator, y) {
         case '-' :
             return subtract(x, y);
         case '*' :
-            return multiply(x, y).toFixed(2).replace(/[.]00$/, "");
+            return multiply(x, y).toFixed(3).replace(/[.]00$/, "");
         case '/' :
-            return divide(x, y).toFixed(2).replace(/[.]00$/, "");  
+            return divide(x, y).toFixed(3).replace(/[.]00$/, "");  
     }
 }
 
@@ -55,8 +55,16 @@ function inputDecimal(e) {
         populateScreen(value);
         return value;
     }
-    if (value.split('').some(item => item == '.')) return value;
+    if (value.toString().split('').some(item => item == '.')) return value;
     value += e.target.textContent;
+    populateScreen(value);
+    return value;
+}
+
+// Percentage 
+
+function getPercentage() {
+    value /= 100;
     populateScreen(value);
     return value;
 }
@@ -143,3 +151,9 @@ equals.addEventListener('click', solve);
 const ac = document.querySelector('.ac');
 
 ac.addEventListener('click', allClear);
+
+// Percent event listener
+
+const percent = document.querySelector('.percent');
+
+percent.addEventListener('click', getPercentage);
