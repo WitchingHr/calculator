@@ -21,7 +21,7 @@ function multiply(x, y) {
     if (product.toString().length > 14) {
         return product.toExponential(6);
     }
-    return parseFloat(x * y).toFixed(3);
+    return parseFloat((x * y).toFixed(3));
 }
 
 function divide(x, y) {
@@ -29,7 +29,7 @@ function divide(x, y) {
     if (quotient.toString().length > 14) {
         return quotient.toExponential(6);
     }
-    return parseFloat(x / y).toFixed(3);
+    return parseFloat((x / y).toFixed(3));
 }
 
 function operate(x, operator, y) {
@@ -51,12 +51,12 @@ let value = '';
 
 function getNumber(e) {
     if (value == '') {
-        populateScreen(e.target.textContent);
+        populateBottomScreen(e.target.textContent);
         return value = Number(e.target.textContent);
     }
     if (value.length == 14) return value;
     value += e.target.textContent;
-    populateScreen(value);
+    populateBottomScreen(value);
     return Number(value);
 }
 
@@ -64,17 +64,17 @@ function getNumber(e) {
 
 function inputDecimal(e) {
     if (value == '') {
-        populateScreen(e.target.textContent);
+        populateBottomScreen(e.target.textContent);
         return value = e.target.textContent;
     }
     if (value.toString().length == 1) {
         value += e.target.textContent;
-        populateScreen(value);
+        populateBottomScreen(value);
         return value;
     }
     if (value.toString().split('').some(item => item == '.')) return value;
     value += e.target.textContent;
-    populateScreen(value);
+    populateBottomScreen(value);
     return value;
 }
 
@@ -83,9 +83,9 @@ function inputDecimal(e) {
 function getPercentage() {
     value /= 100;
     if (value.toString().length > 14) {
-        value = value.toExponential(3);
+        value = value.toExponential(6);
     }
-    populateScreen(value);
+    populateBottomScreen(value);
     return value;
 }
 
@@ -95,7 +95,7 @@ function deleteChar() {
     const array = value.toString().split('');
     array.pop();
     value = array.join('');
-    populateScreen(value);
+    populateBottomScreen(value);
     return value;
 }
 
@@ -104,12 +104,12 @@ function deleteChar() {
 function makeNegative() {
     if (value > 0) {
         value = -Number(value);
-        populateScreen(value);
+        populateBottomScreen(value);
         return value;
     }
     if (value < 0) {
         value = -Number(value);
-        populateScreen(value);
+        populateBottomScreen(value);
         return value;
     }
 }
@@ -132,8 +132,8 @@ function getOperator(e) {
     operator = e.target.id;
     symbol = e.target.textContent;
     storeValue(value);
-    clearScreen();
-    populateTop();
+    clearBottomScreen();
+    populateTopScreen();
 }
 
 // Solve
@@ -141,94 +141,65 @@ function getOperator(e) {
 function solve() {
     if (value == '') return value = '';
     value = operate(storedValue, operator, value);
-    populateScreen(value);
-    clearTop();
+    populateBottomScreen(value);
+    clearTopScreen();
 
 }
 
 // All clear
 
 function allClear() {
-    clearScreen();
-    clearTop();
+    clearBottomScreen();
+    clearTopScreen();
     storedValue = '';
     value = '';
     operator = '';
 }
 
-// Populate bottom-screen
-
-const screenBottom = document.querySelector('.screen-bottom');
-
-function populateScreen(num) {
-    screenBottom.textContent = num;
-}
-
-// Populate top-screen
+// Screen
 
 const screenTop = document.querySelector('.screen-top');
+const screenBottom = document.querySelector('.screen-bottom');
 
-function populateTop() {
+function populateTopScreen() {
     screenTop.textContent = `${storedValue} ${symbol}`;
 }
 
-// Clear screen
-
-function clearScreen() {
-    value = '';
-    populateScreen();
+function populateBottomScreen(num) {
+    screenBottom.textContent = num;
 }
 
-// Clear top
-
-function clearTop() {
+function clearTopScreen() {
     screenTop.textContent = '';
 }
 
-// Numbers event listener
+function clearBottomScreen() {
+    value = '';
+    populateBottomScreen();
+}
+
+// Event listeners
 
 const numbers = document.querySelectorAll('.number');
-
 numbers.forEach(number => number.addEventListener('click', getNumber));
 
-// Decimal event listener
-
 const dec = document.querySelector('.point');
-
 dec.addEventListener('click', inputDecimal);
 
-// Operators event listener
-
 const operators = document.querySelectorAll('.operator');
-
 operators.forEach(operator => operator.addEventListener('click', getOperator));
 
-// Equals event listener
-
 const equals = document.querySelector('.equals');
-
 equals.addEventListener('click', solve);
 
-// AC event listener
-
 const ac = document.querySelector('.ac');
-
 ac.addEventListener('click', allClear);
 
-// Percent event listener
-
 const percent = document.querySelector('.percent');
-
 percent.addEventListener('click', getPercentage);
 
-// Delete event listener
-
 const del = document.querySelector('.delete');
-
 del.addEventListener('click', deleteChar);
 
-// Negative event listener
-
 const neg = document.querySelector('.negative');
-
 neg.addEventListener('click', makeNegative);
