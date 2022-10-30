@@ -38,6 +38,7 @@ function getNumber(e) {
         populateScreen(e.target.textContent);
         return value = Number(e.target.textContent);
     }
+    // if string is too long, return..............................
     value += e.target.textContent;
     populateScreen(value);
     return Number(value);
@@ -79,13 +80,27 @@ function deleteChar() {
     return value;
 }
 
+// Negative
+
+function makeNegative() {
+    if (value > 0) {
+        value = -Number(value);
+        populateScreen(value);
+        return value;
+    }
+    if (value < 0) {
+        value = -Number(value);
+        populateScreen(value);
+        return value;
+    }
+}
+
 // Store value, clear value
 
 let storedValue = '';
 
 function storeValue(value) {
     storedValue = Number(value);
-    console.log(storedValue); // remove this
     value = '';
 }
 
@@ -95,7 +110,6 @@ let operator = '';
 
 function getOperator(e) {
     operator = e.target.textContent;
-    console.log(operator); // remove this
     storeValue(value);
     clearScreen();
 }
@@ -173,3 +187,9 @@ percent.addEventListener('click', getPercentage);
 const del = document.querySelector('.delete');
 
 del.addEventListener('click', deleteChar);
+
+// Negative event listener
+
+const neg = document.querySelector('.negative');
+
+neg.addEventListener('click', makeNegative);
