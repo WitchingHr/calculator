@@ -23,9 +23,9 @@ function operate(x, operator, y) {
         case '-' :
             return subtract(x, y);
         case '*' :
-            return multiply(x, y).toFixed(3).replace(/[.]000$/, "");
+            return parseFloat(multiply(x, y).toFixed(3).replace(/[.]000$/, ""));
         case '/' :
-            return divide(x, y).toFixed(3).replace(/[.]000$/, "");  
+            return parseFloat(divide(x, y).toFixed(3).replace(/[.]000$/, ""));  
     }
 }
 
