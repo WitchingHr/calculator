@@ -28,7 +28,7 @@ function divide(x, y) {
     const quotient = parseFloat(x / y);
     const rounded = quotient.toFixed(6);
     if (rounded.toString().length > 14) {
-        return rounded.toExponential(6);
+        return Number(rounded).toExponential(6);
     }
     return parseFloat(rounded);
 }
