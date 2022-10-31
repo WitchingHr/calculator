@@ -133,19 +133,39 @@ let operator = '';
 let symbol = '';
 
 function getOperatorByClick(e) {
-    operator = e.target.id;
-    symbol = e.target.textContent;
-    storeValue(value);
-    clearBottomScreen();
-    populateTopScreen();
+    if (operator === '') {
+        operator = e.target.id;
+        symbol = e.target.textContent;
+    }
+    if (storedValue && value) { // For chaining operations
+        solveByOperator();
+        clearBottomScreen();
+        operator = e.target.id;
+        symbol = e.target.textContent;
+        populateTopScreen();
+    } else {
+        storeValue(value);
+        clearBottomScreen();
+        populateTopScreen(); 
+    }
 }
 
 function getOperatorByKey(op, sym) {
-    operator = op;
-    symbol = sym;
-    storeValue(value);
-    clearBottomScreen();
-    populateTopScreen();
+    if (operator === '') {
+        operator = op;
+        symbol = sym;
+    }
+    if (storedValue && value) { // For chaining operations
+        solveByOperator();
+        clearBottomScreen();
+        operator = op;
+        symbol = sym;
+        populateTopScreen();
+    } else {
+        storeValue(value);
+        clearBottomScreen();
+        populateTopScreen(); 
+    }
 }
 
 // Solve
@@ -155,7 +175,13 @@ function solve() {
     value = operate(storedValue, operator, Number(value));
     populateBottomScreen(value);
     clearTopScreen();
+    storedValue = '';
+    operator = '';
+}
 
+function solveByOperator() {
+    storedValue = operate(storedValue, operator, Number(value));
+    value = '';
 }
 
 // Delete
