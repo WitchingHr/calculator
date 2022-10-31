@@ -3,7 +3,20 @@ body {
     background: linear-gradient(140deg, rgb(150, 254, 225) 5%, rgb(33, 160, 218) 98%);
 }
 
+.container {
+    display: flex;
+}
+
+.left {
+    flex: 1 1 auto;
+}
+
+.right {
+    flex: 1 1 auto;
+}
+
 .wrapper {
+    flex: 0 0 auto;
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
