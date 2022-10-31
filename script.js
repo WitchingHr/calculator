@@ -332,6 +332,10 @@ window.addEventListener('keydown', e => {
         allClear();
         ac.classList.add('animate');
     }
+    if (e.code === 'KeyN') {
+        makeNegative();
+        neg.classList.add('animate');
+    }
 });
 
 window.addEventListener('keyup', e => {
@@ -354,4 +358,5 @@ window.addEventListener('keyup', e => {
     if (e.key === '*' ) operators[1].classList.remove('animate');
     if (e.code === 'Slash') operators[0].classList.remove('animate');
     if (e.code === 'Escape') ac.classList.remove('animate');
+    if (e.code === 'KeyN') neg.classList.remove('animate');
 });
