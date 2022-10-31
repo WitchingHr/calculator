@@ -256,23 +256,102 @@ neg.addEventListener('click', makeNegative);
 // Keyboard
 
 window.addEventListener('keydown', e => {
-    if (e.code === 'Backspace') deleteChar();
-    if (e.code === 'Enter') solve();
-    if (e.code === 'Period') inputDecimal();
-    if (e.key === '%') getPercentage();
-    if (e.code === 'Digit1') getNumberByKey('1');
-    if (e.code === 'Digit2') getNumberByKey('2');
-    if (e.code === 'Digit3') getNumberByKey('3');
-    if (e.code === 'Digit4') getNumberByKey('4');
-    if (e.key === '5') getNumberByKey('5');
-    if (e.code === 'Digit6') getNumberByKey('6');
-    if (e.code === 'Digit7') getNumberByKey('7');
-    if (e.key === '8') getNumberByKey('8');
-    if (e.code === 'Digit9') getNumberByKey('9');
-    if (e.code === 'Digit0') getNumberByKey('0');
-    if (e.code === 'Equal') getOperatorByKey('+', '+');
-    if (e.code === 'Minus') getOperatorByKey('-', '−');
-    if (e.key === '*' ) getOperatorByKey('*', '×');
-    if (e.code === 'Slash') getOperatorByKey('/', '÷');
-    if (e.code === 'Escape') allClear();
+    if (e.code === 'Backspace') {
+        deleteChar();
+        del.classList.add('animate');
+    }
+    if (e.code === 'Enter') {
+        solve();
+        equals.classList.add('animate');
+    }
+    if (e.code === 'Period') {
+        inputDecimal();
+        dec.classList.add('animate');
+    }
+    if (e.key === '%') {
+        getPercentage();
+        percent.classList.add('animate');
+    }
+    if (e.code === 'Digit1') {
+        getNumberByKey('1');
+        numbers[6].classList.add('animate');
+    }
+    if (e.code === 'Digit2') {
+        getNumberByKey('2');
+        numbers[7].classList.add('animate');
+    }
+    if (e.code === 'Digit3') {
+        getNumberByKey('3');
+        numbers[8].classList.add('animate');
+    }
+    if (e.code === 'Digit4') {
+        getNumberByKey('4');
+        numbers[3].classList.add('animate');
+    }
+    if (e.key === '5') {
+        getNumberByKey('5');
+        numbers[4].classList.add('animate');
+    }
+    if (e.code === 'Digit6') {
+        getNumberByKey('6');
+        numbers[5].classList.add('animate');
+    }
+    if (e.code === 'Digit7') {
+        getNumberByKey('7');
+        numbers[0].classList.add('animate');
+    }
+    if (e.key === '8') {
+        getNumberByKey('8');
+        numbers[1].classList.add('animate');
+    }
+    if (e.code === 'Digit9') {
+        getNumberByKey('9');
+        numbers[2].classList.add('animate');
+    }
+    if (e.code === 'Digit0') {
+        getNumberByKey('0');
+        numbers[9].classList.add('animate');
+    }
+    if (e.code === 'Equal') {
+        getOperatorByKey('+', '+');
+        operators[3].classList.add('animate');
+    }
+    if (e.code === 'Minus') {
+        getOperatorByKey('-', '−');
+        operators[2].classList.add('animate');
+    }
+    if (e.key === '*' ) {
+        getOperatorByKey('*', '×');
+        operators[1].classList.add('animate');
+    }
+    if (e.code === 'Slash') {
+        getOperatorByKey('/', '÷');
+        operators[0].classList.add('animate');
+    }
+    if (e.code === 'Escape') {
+        allClear();
+        ac.classList.add('animate');
+    }
+});
+
+window.addEventListener('keyup', e => {
+    if (e.code === 'Backspace') del.classList.remove('animate');
+    if (e.code === 'Enter') equals.classList.remove('animate');
+    if (e.code === 'Period') dec.classList.remove('animate');
+    if (e.key === '%') percent.classList.remove('animate');
+    if (e.code === 'Digit1') numbers[6].classList.remove('animate');
+    if (e.code === 'Digit2') numbers[7].classList.remove('animate');
+    if (e.code === 'Digit3') numbers[8].classList.remove('animate');
+    if (e.code === 'Digit4') numbers[3].classList.remove('animate');
+    if (e.key === '5') numbers[4].classList.remove('animate');
+    if (e.code === 'Digit6') numbers[5].classList.remove('animate');
+    if (e.code === 'Digit7') numbers[0].classList.remove('animate');
+    if (e.key === '8') numbers[1].classList.remove('animate');
+    if (e.code === 'Digit9') numbers[2].classList.remove('animate');
+    if (e.code === 'Digit0') numbers[9].classList.remove('animate');
+    if (e.code === 'Equal') operators[3].classList.remove('animate');
+    if (e.code === 'Minus') operators[2].classList.remove('animate');
+    if (e.key === '*' ) operators[1].classList.remove('animate');
+    if (e.code === 'Slash') operators[0].classList.remove('animate');
+    if (e.code === 'Escape') ac.classList.remove('animate');
 });
