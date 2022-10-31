@@ -6,7 +6,7 @@ body {
 .wrapper {
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
+    justify-content: space-evenly;
     height: 100vh;
     font-family: 'Poppins', sans-serif;
     font-weight: 300;
@@ -109,4 +109,9 @@ body {
 
 .bottom-bar {
     height: 4px;
+}
+
+.footer {
+    text-align: center;
+    color: rgba(150, 254, 225, 0.422);
 }
