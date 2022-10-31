@@ -137,7 +137,7 @@ function getOperatorByClick(e) {
         operator = e.target.id;
         symbol = e.target.textContent;
     }
-    if (storedValue && value) { // For chaining operations
+    if (storedValue && (value || value === 0)) { // For chaining operations
         solveByOperator();
         clearBottomScreen();
         operator = e.target.id;
@@ -171,7 +171,7 @@ function getOperatorByKey(op, sym) {
 // Solve
 
 function solve() {
-    if (value == '') return;
+    if (value == '' && value !== 0) return;
     if (!operator) return;
     value = operate(storedValue, operator, Number(value));
     populateBottomScreen(value);
