@@ -1,7 +1,7 @@
 // Operator functions
 
 function add(x, y) {
-    const sum = Number(x) + Number(y);
+    const sum = x + y;
     if (sum.toString().length > 14) {
         return sum.toExponential(6);
     }
@@ -17,16 +17,17 @@ function subtract(x, y) {
 }
 
 function multiply(x, y) {
-    const product = x * y;
-    if (product.toString().length > 14) {
-        return product.toExponential(6);
+    const product = parseFloat(x * y);
+    const rounded = product.toFixed(4);
+    if (rounded.toString().length > 14) {
+        return Number(rounded).toExponential(6);
     }
-    return parseFloat(product.toFixed(3));
+    return parseFloat(rounded);
 }
 
 function divide(x, y) {
     const quotient = parseFloat(x / y);
-    const rounded = quotient.toFixed(6);
+    const rounded = quotient.toFixed(4);
     if (rounded.toString().length > 14) {
         return Number(rounded).toExponential(6);
     }
@@ -131,7 +132,7 @@ function getOperator(e) {
 
 function solve() {
     if (value == '') return value = '';
-    value = operate(storedValue, operator, value);
+    value = operate(storedValue, operator, Number(value));
     populateBottomScreen(value);
     clearTopScreen();
 
