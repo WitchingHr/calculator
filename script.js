@@ -5,20 +5,20 @@ function add(x, y) {
     if (sum.toString().length > 14) {
         return sum.toExponential(6);
     }
-    return parseFloat(sum);
+    return parseFloat(sum.toFixed(2));
 }
 
 function subtract(x, y) {
-    const difference = x - y;
+    const difference = parseFloat(Number(x).toFixed(2) - Number(y).toFixed(2));
     if (difference.toString().length > 14) {
         return difference.toExponential(6);
     }
-    return parseFloat(difference);
+    return parseFloat(difference.toFixed(2));
 }
 
 function multiply(x, y) {
     const product = parseFloat(x * y);
-    const rounded = product.toFixed(4);
+    const rounded = product.toFixed(2);
     if (rounded.toString().length > 14) {
         return Number(rounded).toExponential(6);
     }
@@ -27,7 +27,7 @@ function multiply(x, y) {
 
 function divide(x, y) {
     const quotient = parseFloat(x / y);
-    const rounded = quotient.toFixed(4);
+    const rounded = quotient.toFixed(2);
     if (rounded.toString().length > 14) {
         return Number(rounded).toExponential(6);
     }
@@ -171,7 +171,8 @@ function getOperatorByKey(op, sym) {
 // Solve
 
 function solve() {
-    if (value == '') return value = '';
+    if (value == '') return;
+    if (!operator) return;
     value = operate(storedValue, operator, Number(value));
     populateBottomScreen(value);
     clearTopScreen();
